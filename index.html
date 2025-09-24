@@ -29,7 +29,7 @@
 <body class="bg-gradient-to-r from-[#F9FAFB] to-[#D2D6DB]
 grid grid-cols-4 gap-x-4">
   <!-- Content container -->
-  <div class="bg-white rounded grid grid-cols-4 gap-x-4 absolute inset-4"></div>
+  <div class="bg-white rounded absolute inset-4"></div>
 
 
   <!-- Modal -->
@@ -45,10 +45,12 @@ grid grid-cols-4 gap-x-4">
     <div class="grid grid-cols-4 gap-x-4 gap-y-10">
       <!-- Title and ratings summary -->
       <div class="px-6 flex flex-col gap-6
-      col-span-4">
+      col-span-4
+      md: md:">
         <div class="">
           <h2 class="font-semibold text-xl text-neutral-900 mb-2">Overall Rating</h2>
-          <p class="flex justify-between items-center">
+          <p class="flex justify-between items-center
+          md:justify-normal gap-x-2">
             <span class="font-semibold text-neutral-900">4.1</span>
             <span>
               <i class="ri-star-fill text-yellow-400 text-xl"></i>
@@ -66,7 +68,8 @@ grid grid-cols-4 gap-x-4">
           <div class="flex items-center justify-between gap-2">
             <p class="w-[120px] font-medium text-neutral-600">Excellent</p>
             <div class="flex items-center justify-between gap-2">
-              <div class="w-[117px] bg-gray-200 rounded-lg h-2">
+              <div class="w-[117px] bg-gray-200 rounded-lg h-2
+              md:w-[280px]">
                 <div class="bg-green-600 h-2 p-0.5 leading-none rounded-lg" style="width: 39%"></div>
               </div>
               <p class="w-10 text-right text-neutral-600">39%</p>
@@ -76,7 +79,8 @@ grid grid-cols-4 gap-x-4">
           <div class="flex items-center justify-between gap-2">
             <p class="w-[120px] font-medium text-neutral-600">Good</p>
             <div class="flex items-center justify-between gap-2">
-              <div class="w-[117px] bg-gray-200 rounded-lg h-2 flex">
+              <div class="w-[117px] bg-gray-200 rounded-lg h-2
+              md:w-[280px]">
                 <div class="bg-green-500 h-2 p-0.5 leading-none rounded-lg" style="width: 35%"></div>
               </div>
               <p class="w-10 text-right text-neutral-600">35%</p>
@@ -86,7 +90,8 @@ grid grid-cols-4 gap-x-4">
           <div class="flex items-center justify-between gap-2">
             <p class="w-[120px] font-medium text-neutral-600">Average</p>
             <div class="flex items-center justify-between gap-2">
-              <div class="w-[117px] bg-gray-200 rounded-lg h-2 flex">
+              <div class="w-[117px] bg-gray-200 rounded-lg h-2 flex
+              md:w-[280px]">
                 <div class="bg-yellow-300 h-2 p-0.5 leading-none rounded-lg" style="width: 19%"></div>
               </div>
               <p class="w-10 text-right text-neutral-600">19%</p>
@@ -96,7 +101,8 @@ grid grid-cols-4 gap-x-4">
           <div class="flex items-center justify-between gap-2">
             <p class="w-[120px] font-medium text-neutral-600">Below Average</p>
             <div class="flex items-center justify-between gap-2">
-              <div class="w-[117px] bg-gray-200 rounded-lg h-2 flex">
+              <div class="w-[117px] bg-gray-200 rounded-lg h-2
+              md:w-[280px]">
                 <div class="bg-yellow-500 h-2 p-0.5 leading-none rounded-lg" style="width: 6%"></div>
               </div>
               <p class="w-10 text-right text-neutral-600">6%</p>
@@ -106,7 +112,8 @@ grid grid-cols-4 gap-x-4">
           <div class="flex items-center justify-between gap-2">
             <p class="w-[120px] font-medium text-neutral-600">Poor</p>
             <div class="flex items-center justify-between gap-2">
-              <div class="w-[117px] bg-gray-200 rounded-lg h-2 flex">
+              <div class="w-[117px] bg-gray-200 rounded-lg h-2
+              md:w-[280px]">
                 <div class="h-2 p-0.5 leading-none rounded-lg" style="width: 0%"></div>
               </div>
               <p class="w-10 text-right text-neutral-600">0%</p>
