@@ -42,11 +42,12 @@ grid grid-cols-4 gap-x-4">
     </div>
 
     <!-- Grid Wrapper -->
-    <div class="grid grid-cols-4 gap-x-4 gap-y-10">
+    <div class="grid grid-cols-4 gap-x-4 gap-y-10
+    xl:gap-x-8 h-full">
       <!-- Title and ratings summary -->
       <div class="px-6 flex flex-col gap-6
       col-span-4
-      md: md:">
+      xl:col-span-2">
         <div class="">
           <h2 class="font-semibold text-xl text-neutral-900 mb-2">Overall Rating</h2>
           <p class="flex justify-between items-center
@@ -128,301 +129,277 @@ grid grid-cols-4 gap-x-4">
       </div>
 
       <!-- Reviews cards -->
-      <div class="col-span-4">
-        <div class="card-container flex flex-col gap-4 mx-4">
-          <div class="flex gap-4">
-            <div class="w-12 h-12">
-              <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+      <div class="col-span-4 xl:col-span-2 mx-4
+      xl:mx-8 h-full">
+        <div class="cards-container grid gap-y-8">
+          <div class="card-container flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12">
+                <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+              </div>
+              <div class="review-message-container flex flex-grow justify-between">
+                <div class="flex flex-col justify-between">
+                  <p class="font-semibold text-neutral-900">Lilia McKnight</p>
+                  <span>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  </span>
+                </div>
+                <div class="date-n-time">
+                  <span class="text-neutral-600 text-xs">March 3, 2024</span>
+                </div>
+              </div>
             </div>
-            <div class="review-message-container flex flex-grow justify-between">
-              <div class="flex flex-col justify-between">
-                <p class="font-semibold text-neutral-900">Lilia McKnight</p>
-                <span>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-gray-200 text-xl"></i>
-                </span>
-              </div>
-              <div class="date-n-time">
-                <span class="text-neutral-600 text-xs">March 3, 2024</span>
-              </div>
+            <div class="text-neutral-600">
+              <p>I've worn it everywhere, super durable and fashionable.</p>
             </div>
           </div>
 
-          <div class="text-neutral-600">
-            <p>I've worn it everywhere, super durable and fashionable.</p>
+          <div class="card-container flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12">
+                <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+              </div>
+              <div class="review-message-container flex flex-grow justify-between">
+                <div class="flex flex-col justify-between">
+                  <p class="font-semibold text-neutral-900">Lilia McKnight</p>
+                  <span>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  </span>
+                </div>
+                <div class="date-n-time">
+                  <span class="text-neutral-600 text-xs">March 3, 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-neutral-600">
+              <p>I've worn it everywhere, super durable and fashionable.</p>
+            </div>
+          </div>
+
+          <div class="card-container flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12">
+                <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+              </div>
+              <div class="review-message-container flex flex-grow justify-between">
+                <div class="flex flex-col justify-between">
+                  <p class="font-semibold text-neutral-900">Lilia McKnight</p>
+                  <span>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  </span>
+                </div>
+                <div class="date-n-time">
+                  <span class="text-neutral-600 text-xs">March 3, 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-neutral-600">
+              <p>I've worn it everywhere, super durable and fashionable.</p>
+            </div>
+          </div>
+
+          <div class="card-container flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12">
+                <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+              </div>
+              <div class="review-message-container flex flex-grow justify-between">
+                <div class="flex flex-col justify-between">
+                  <p class="font-semibold text-neutral-900">Lilia McKnight</p>
+                  <span>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  </span>
+                </div>
+                <div class="date-n-time">
+                  <span class="text-neutral-600 text-xs">March 3, 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-neutral-600">
+              <p>I've worn it everywhere, super durable and fashionable.</p>
+            </div>
+          </div>
+
+          <div class="card-container flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12">
+                <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+              </div>
+              <div class="review-message-container flex flex-grow justify-between">
+                <div class="flex flex-col justify-between">
+                  <p class="font-semibold text-neutral-900">Lilia McKnight</p>
+                  <span>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  </span>
+                </div>
+                <div class="date-n-time">
+                  <span class="text-neutral-600 text-xs">March 3, 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-neutral-600">
+              <p>I've worn it everywhere, super durable and fashionable.</p>
+            </div>
+          </div>
+
+          <div class="card-container flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12">
+                <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+              </div>
+              <div class="review-message-container flex flex-grow justify-between">
+                <div class="flex flex-col justify-between">
+                  <p class="font-semibold text-neutral-900">Lilia McKnight</p>
+                  <span>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  </span>
+                </div>
+                <div class="date-n-time">
+                  <span class="text-neutral-600 text-xs">March 3, 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-neutral-600">
+              <p>I've worn it everywhere, super durable and fashionable.</p>
+            </div>
+          </div>
+
+          <div class="card-container flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12">
+                <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+              </div>
+              <div class="review-message-container flex flex-grow justify-between">
+                <div class="flex flex-col justify-between">
+                  <p class="font-semibold text-neutral-900">Lilia McKnight</p>
+                  <span>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  </span>
+                </div>
+                <div class="date-n-time">
+                  <span class="text-neutral-600 text-xs">March 3, 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-neutral-600">
+              <p>I've worn it everywhere, super durable and fashionable.</p>
+            </div>
+          </div>
+
+          <div class="card-container flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12">
+                <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+              </div>
+              <div class="review-message-container flex flex-grow justify-between">
+                <div class="flex flex-col justify-between">
+                  <p class="font-semibold text-neutral-900">Lilia McKnight</p>
+                  <span>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  </span>
+                </div>
+                <div class="date-n-time">
+                  <span class="text-neutral-600 text-xs">March 3, 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-neutral-600">
+              <p>I've worn it everywhere, super durable and fashionable.</p>
+            </div>
+          </div>
+
+          <div class="card-container flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12">
+                <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+              </div>
+              <div class="review-message-container flex flex-grow justify-between">
+                <div class="flex flex-col justify-between">
+                  <p class="font-semibold text-neutral-900">Lilia McKnight</p>
+                  <span>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  </span>
+                </div>
+                <div class="date-n-time">
+                  <span class="text-neutral-600 text-xs">March 3, 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-neutral-600">
+              <p>I've worn it everywhere, super durable and fashionable.</p>
+            </div>
+          </div>
+
+          <div class="card-container flex flex-col gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12">
+                <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
+              </div>
+              <div class="review-message-container flex flex-grow justify-between">
+                <div class="flex flex-col justify-between">
+                  <p class="font-semibold text-neutral-900">Lilia McKnight</p>
+                  <span>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
+                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  </span>
+                </div>
+                <div class="date-n-time">
+                  <span class="text-neutral-600 text-xs">March 3, 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-neutral-600">
+              <p>I've worn it everywhere, super durable and fashionable.</p>
+            </div>
           </div>
         </div>
 
-      </div>
-      <div class="col-span-4">
-        <div class="card-container flex flex-col gap-4 mx-4">
-          <div class="flex gap-4">
-            <div class="w-12 h-12">
-              <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
-            </div>
-            <div class="review-message-container flex flex-grow justify-between">
-              <div class="flex flex-col justify-between">
-                <p class="font-semibold text-neutral-900">Lilia McKnight</p>
-                <span>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-gray-200 text-xl"></i>
-                </span>
-              </div>
-              <div class="date-n-time">
-                <span class="text-neutral-600 text-xs">March 3, 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-neutral-600">
-            <p>I've worn it everywhere, super durable and fashionable.</p>
-          </div>
+        
+        <div class="flex justify-center mt-12 mb-6
+        xl:mx-4">
+          <button class="text-neutral-900 font-medium w-full text-center
+          border-neutral-200 border shadow-md rounded
+          py-2.5">Show <span>10</span> more reviews</button>
         </div>
-
-      </div>
-      <div class="col-span-4">
-        <div class="card-container flex flex-col gap-4 mx-4">
-          <div class="flex gap-4">
-            <div class="w-12 h-12">
-              <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
-            </div>
-            <div class="review-message-container flex flex-grow justify-between">
-              <div class="flex flex-col justify-between">
-                <p class="font-semibold text-neutral-900">Lilia McKnight</p>
-                <span>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-gray-200 text-xl"></i>
-                </span>
-              </div>
-              <div class="date-n-time">
-                <span class="text-neutral-600 text-xs">March 3, 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-neutral-600">
-            <p>I've worn it everywhere, super durable and fashionable.</p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-span-4">
-        <div class="card-container flex flex-col gap-4 mx-4">
-          <div class="flex gap-4">
-            <div class="w-12 h-12">
-              <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
-            </div>
-            <div class="review-message-container flex flex-grow justify-between">
-              <div class="flex flex-col justify-between">
-                <p class="font-semibold text-neutral-900">Lilia McKnight</p>
-                <span>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-gray-200 text-xl"></i>
-                </span>
-              </div>
-              <div class="date-n-time">
-                <span class="text-neutral-600 text-xs">March 3, 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-neutral-600">
-            <p>I've worn it everywhere, super durable and fashionable.</p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-span-4">
-        <div class="card-container flex flex-col gap-4 mx-4">
-          <div class="flex gap-4">
-            <div class="w-12 h-12">
-              <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
-            </div>
-            <div class="review-message-container flex flex-grow justify-between">
-              <div class="flex flex-col justify-between">
-                <p class="font-semibold text-neutral-900">Lilia McKnight</p>
-                <span>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-gray-200 text-xl"></i>
-                </span>
-              </div>
-              <div class="date-n-time">
-                <span class="text-neutral-600 text-xs">March 3, 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-neutral-600">
-            <p>I've worn it everywhere, super durable and fashionable.</p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-span-4">
-        <div class="card-container flex flex-col gap-4 mx-4">
-          <div class="flex gap-4">
-            <div class="w-12 h-12">
-              <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
-            </div>
-            <div class="review-message-container flex flex-grow justify-between">
-              <div class="flex flex-col justify-between">
-                <p class="font-semibold text-neutral-900">Lilia McKnight</p>
-                <span>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-gray-200 text-xl"></i>
-                </span>
-              </div>
-              <div class="date-n-time">
-                <span class="text-neutral-600 text-xs">March 3, 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-neutral-600">
-            <p>I've worn it everywhere, super durable and fashionable.</p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-span-4">
-        <div class="card-container flex flex-col gap-4 mx-4">
-          <div class="flex gap-4">
-            <div class="w-12 h-12">
-              <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
-            </div>
-            <div class="review-message-container flex flex-grow justify-between">
-              <div class="flex flex-col justify-between">
-                <p class="font-semibold text-neutral-900">Lilia McKnight</p>
-                <span>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-gray-200 text-xl"></i>
-                </span>
-              </div>
-              <div class="date-n-time">
-                <span class="text-neutral-600 text-xs">March 3, 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-neutral-600">
-            <p>I've worn it everywhere, super durable and fashionable.</p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-span-4">
-        <div class="card-container flex flex-col gap-4 mx-4">
-          <div class="flex gap-4">
-            <div class="w-12 h-12">
-              <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
-            </div>
-            <div class="review-message-container flex flex-grow justify-between">
-              <div class="flex flex-col justify-between">
-                <p class="font-semibold text-neutral-900">Lilia McKnight</p>
-                <span>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-gray-200 text-xl"></i>
-                </span>
-              </div>
-              <div class="date-n-time">
-                <span class="text-neutral-600 text-xs">March 3, 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-neutral-600">
-            <p>I've worn it everywhere, super durable and fashionable.</p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-span-4">
-        <div class="card-container flex flex-col gap-4 mx-4">
-          <div class="flex gap-4">
-            <div class="w-12 h-12">
-              <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
-            </div>
-            <div class="review-message-container flex flex-grow justify-between">
-              <div class="flex flex-col justify-between">
-                <p class="font-semibold text-neutral-900">Lilia McKnight</p>
-                <span>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-gray-200 text-xl"></i>
-                </span>
-              </div>
-              <div class="date-n-time">
-                <span class="text-neutral-600 text-xs">March 3, 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-neutral-600">
-            <p>I've worn it everywhere, super durable and fashionable.</p>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-span-4">
-        <div class="card-container flex flex-col gap-4 mx-4">
-          <div class="flex gap-4">
-            <div class="w-12 h-12">
-              <img class="w-12 h-12 object-cover rounded-full" src="https://vaqybtnqyonvlwtskzmv.supabase.co/storage/v1/object/public/e-commerce-track-images/user-avatars/kerry-love.jpg" alt="avatar">
-            </div>
-            <div class="review-message-container flex flex-grow justify-between">
-              <div class="flex flex-col justify-between">
-                <p class="font-semibold text-neutral-900">Lilia McKnight</p>
-                <span>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                  <i class="ri-star-fill text-gray-200 text-xl"></i>
-                </span>
-              </div>
-              <div class="date-n-time">
-                <span class="text-neutral-600 text-xs">March 3, 2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-neutral-600">
-            <p>I've worn it everywhere, super durable and fashionable.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-span-4 flex justify-center mt-2 mx-4 mb-6">
-        <button class="text-neutral-900 font-medium w-full text-center
-        border-neutral-200 border shadow-md rounded
-        py-2.5">Show <span>10</span> more reviews</button>
       </div>
 
     </div>
