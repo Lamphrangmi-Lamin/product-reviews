@@ -2,6 +2,8 @@ import reviews from "../data/product-reviews.json" with {type: "json"};
 // console.log(reviews);
 import users from "../data/users.json" with {type: "json"};
 // console.log(users);
+let sortedReviews = [...reviews].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+console.log(sortedReviews);
 
 const cardsContainer = document.querySelector('.cards-container');
 // console.log(cardsContainer);
@@ -10,7 +12,11 @@ function renderCards(productReviews, perPage = 12) {
     // 
 }
 
-const cardHTML = reviews.map(review => {
+function sortData() {
+    // 
+}
+
+const cardHTML = sortedReviews.map(review => {
     const username = users.find(user => user.user_id === review.user_id).name;
     // console.log(username);
     const avatarUrl = users.find(user => user.user_id === review.user_id).avatar_url;
