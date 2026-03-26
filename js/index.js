@@ -3,18 +3,8 @@ import reviews from "../data/product-reviews.json" with {type: "json"};
 import users from "../data/users.json" with {type: "json"};
 // console.log(users);
 let sortedReviews = [...reviews].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-console.log(sortedReviews);
-
+// console.log(sortedReviews);
 const cardsContainer = document.querySelector('.cards-container');
-// console.log(cardsContainer);
-
-function renderCards(productReviews, perPage = 12) {
-    // 
-}
-
-function sortData() {
-    // 
-}
 
 const cardHTML = sortedReviews.map(review => {
     const username = users.find(user => user.user_id === review.user_id).name;
@@ -30,6 +20,19 @@ const cardHTML = sortedReviews.map(review => {
         });
         return newDate;
     }
+
+    function renderRatings(rating) {
+        let ratingBar = ``;
+        for (let i = 0; i < 5; i++) {
+            if (i < rating) {
+                ratingBar += `<i class="ri-star-fill text-yellow-400 text-xl"></i>`;
+            } else {
+                ratingBar += `<i class="ri-star-fill text-gray-200 text-xl"></i>`;
+            }
+        }
+        // console.log(rating)
+        return ratingBar;
+    }
     
     return `<div class="card-container flex flex-col gap-4">
             <div class="flex gap-4">
@@ -39,12 +42,8 @@ const cardHTML = sortedReviews.map(review => {
               <div class="review-message-container flex flex-grow justify-between">
                 <div class="flex flex-col justify-between">
                   <p class="font-semibold text-neutral-900">${username}</p>
-                  <span>
-                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                    <i class="ri-star-fill text-yellow-400 text-xl"></i>
-                    <i class="ri-star-fill text-gray-200 text-xl"></i>
+                  <span class="rating-bar">
+                    ${renderRatings(review.rating)}
                   </span>
                 </div>
                 <div class="date-n-time">
@@ -57,8 +56,6 @@ const cardHTML = sortedReviews.map(review => {
             </div>
           </div>`
 }).join("");
-
-// console.log(cardHTML);
 
 cardsContainer.innerHTML = cardHTML;
 
