@@ -13,17 +13,42 @@ let sortedReviews = [...reviews].sort(
 );
 
 // Pagination
-let visibleCount = 10;
+// let pageSize;
 let visibleReviews = [];
-let remainingReviews = sortedReviews.length - visibleCount;
-remainReviewsContainer.innerText = `${remainingReviews}`
 // console.log(remainingReviews)
 
-function pagination(count) {
-  visibleReviews = sortedReviews.slice(0, count);
+const mql = window.matchMedia("(width <= 768px)");
+console.log(mql);
+
+let visibleCount = mql.matches ? 10 : 12;
+let remainingReviews = mql.matches ? 10 : 12;
+remainReviewsContainer.innerText = `${remainingReviews}`;
+
+mql.addEventListener("change", (event) => {
+  if (event.matches) {
+    console.log(`matches to true`);
+    visibleCount = 10;
+    // console.log(visibleCount);
+    remainingReviews = 10;
+  } else {
+    console.log(`matches to false`);
+    visibleCount = 12;
+    remainingReviews = 12;
+    // console.log(visibleCount);
+  }
+  // console.log(mql)
+  pagination(visibleCount);
+  // remainReviewsContainer.innerText = `${remainingReviews}`;
   console.log(visibleReviews);
+});
+function pagination(count, pageSize) {
+  visibleReviews = sortedReviews.slice(0, count);
+  cardsContainer.innerHTML = cardHTML();
+  remainReviewsContainer.innerText = `${remainingReviews}`;
+  // pageSize
 }
 pagination(visibleCount);
+console.log(visibleCount, remainingReviews);
 
 // show more button
 showMoreBtn.addEventListener("click", () => {
