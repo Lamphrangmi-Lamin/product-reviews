@@ -17,44 +17,60 @@ let visibleReviews = [];
 // console.log(remainingReviews)
 
 const mql = window.matchMedia("(width <= 768px)");
-console.log(mql);
+// console.log(mql);
 
 let visibleCount = mql.matches ? 10 : 12;
-let remainingReviews = mql.matches ? 10 : 12;
+let remainingReviews;
+let totalReviewsCount = sortedReviews.length;
 let pageSize = mql.matches ? 10 : 12;
-remainReviewsContainer.innerText = `${remainingReviews}`;
+
+// console.log({
+//   currentRemaining: remainingReviews,
+//   calC: `${sortedReviews.length} - ${visibleReviews.length}`,
+//   total: totalReviewsCount,
+// })
 
 mql.addEventListener("change", (event) => {
   if (event.matches) {
-    console.log(`matches to true`);
+    // console.log(`matches to true`);
     visibleCount = 10;
     pageSize = 10;
-    remainingReviews = 10;
   } else {
-    console.log(`matches to false`);
+    // console.log(`matches to false`);
     visibleCount = 12;
-    remainingReviews = 12;
     pageSize = 12;
   }
   pagination(visibleCount);
-  console.log(visibleReviews);
+  // console.log(visibleReviews);
 });
-function pagination(count, pageSize) {
+function pagination(count) {
   visibleReviews = sortedReviews.slice(0, count);
   cardsContainer.innerHTML = cardHTML();
-  remainReviewsContainer.innerText = `${remainingReviews}`;
+  remainReviewsContainer.innerText = `${pageSize}`;
 }
 pagination(visibleCount);
 
 // Show more button
 showMoreBtn.addEventListener("click", () => {
-  visibleCount = visibleCount + pageSize;
-  pagination(visibleCount);
-  console.log(visibleReviews)
-  console.log(`Now the visibleCount is ${visibleCount}`);
-  pagination(visibleCount);
-  console.log(`VisibleReviews are of ${visibleReviews.length}`);
-  console.log(`Remaining views are ${sortedReviews.length - visibleCount}`);
+  if (visibleCount < sortedReviews.length) {
+    visibleCount = Math.min(visibleCount + pageSize, sortedReviews.length);
+    pagination(visibleCount);
+    remainingReviews = totalReviewsCount - visibleCount
+
+    // console.log({
+    //   VcountAfterClick: visibleCount,
+    //   RcountAfterClick: remainingReviews
+    // });
+
+    if (remainingReviews <= 0) {
+      remainReviewsContainer.innerText = `${remainingReviews}`;
+    }
+    // console.log({
+    //   visibleReviews: visibleReviews,
+    //   visibleReviewsCount: visibleReviews.length,
+    //   remainingReviews: remainingReviews
+    // })
+  }
 });
 
 function cardHTML() {
