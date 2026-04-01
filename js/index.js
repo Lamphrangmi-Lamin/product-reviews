@@ -13,7 +13,6 @@ let sortedReviews = [...reviews].sort(
 );
 
 // Pagination
-// let pageSize;
 let visibleReviews = [];
 // console.log(remainingReviews)
 
@@ -22,45 +21,40 @@ console.log(mql);
 
 let visibleCount = mql.matches ? 10 : 12;
 let remainingReviews = mql.matches ? 10 : 12;
+let pageSize = mql.matches ? 10 : 12;
 remainReviewsContainer.innerText = `${remainingReviews}`;
 
 mql.addEventListener("change", (event) => {
   if (event.matches) {
     console.log(`matches to true`);
     visibleCount = 10;
-    // console.log(visibleCount);
+    pageSize = 10;
     remainingReviews = 10;
   } else {
     console.log(`matches to false`);
     visibleCount = 12;
     remainingReviews = 12;
-    // console.log(visibleCount);
+    pageSize = 12;
   }
-  // console.log(mql)
   pagination(visibleCount);
-  // remainReviewsContainer.innerText = `${remainingReviews}`;
   console.log(visibleReviews);
 });
 function pagination(count, pageSize) {
   visibleReviews = sortedReviews.slice(0, count);
   cardsContainer.innerHTML = cardHTML();
   remainReviewsContainer.innerText = `${remainingReviews}`;
-  // pageSize
 }
 pagination(visibleCount);
-console.log(visibleCount, remainingReviews);
 
-// show more button
+// Show more button
 showMoreBtn.addEventListener("click", () => {
-  visibleCount = sortedReviews.length;
+  visibleCount = visibleCount + pageSize;
+  pagination(visibleCount);
+  console.log(visibleReviews)
   console.log(`Now the visibleCount is ${visibleCount}`);
   pagination(visibleCount);
   console.log(`VisibleReviews are of ${visibleReviews.length}`);
-  cardsContainer.innerHTML = cardHTML();
-  //   remainingReviews = 0;
-  remainingReviews = sortedReviews.length - visibleCount;
-  remainReviewsContainer.innerText = `${remainingReviews}`;
-  console.log(`Remaining views is ${remainingReviews}`);
+  console.log(`Remaining views are ${sortedReviews.length - visibleCount}`);
 });
 
 function cardHTML() {
