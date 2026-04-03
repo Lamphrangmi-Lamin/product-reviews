@@ -52,19 +52,19 @@ grid grid-cols-4 gap-x-4">
           <h2 class="font-semibold text-xl text-neutral-900 mb-2">Overall Rating</h2>
           <p class="flex justify-between items-center
           md:justify-normal gap-x-2">
-            <span class="font-semibold text-neutral-900">4.1</span>
-            <span>
-              <i class="ri-star-fill text-yellow-400 text-xl"></i>
-              <i class="ri-star-fill text-yellow-400 text-xl"></i>
-              <i class="ri-star-fill text-yellow-400 text-xl"></i>
-              <i class="ri-star-fill text-yellow-400 text-xl"></i>
-              <i class="ri-star-fill text-gray-200 text-xl"></i>
+            <di id="averageRating" class="font-semibold text-neutral-900">4.1</di>
+            <span id="overallRating" >
+              <i class="star ri-star-fill text-yellow-400 text-xl"></i>
+              <i class="star ri-star-fill text-yellow-400 text-xl"></i>
+              <i class="star ri-star-fill text-yellow-400 text-xl"></i>
+              <i class="star ri-star-fill text-yellow-400 text-xl"></i>
+              <i class="star ri-star-fill text-gray-200 text-xl"></i>
             </span>
-            <span class="text-sm text-neutral-600">Based on 62 reviews</span>
+            <span class="text-sm text-neutral-600">Based on <span id="total-no-reviews">62</span> reviews</span>
           </p>
         </div>
 
-        <!-- Rating bars -->
+        <!-- Rating bands -->
         <div class="py-4 flex gap-4 flex-col">
           <div class="flex items-center justify-between gap-2">
             <p class="w-[120px] font-medium text-neutral-600">Excellent</p>

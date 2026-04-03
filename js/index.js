@@ -45,7 +45,7 @@ mql.addEventListener("change", (event) => {
 });
 function pagination(count) {
   visibleReviews = sortedReviews.slice(0, count);
-  cardsContainer.innerHTML = cardHTML();
+  cardsContainer.innerHTML = cardHTML(visibleReviews);
   remainReviewsContainer.innerText = `${pageSize}`;
 }
 pagination(visibleCount);
@@ -55,7 +55,7 @@ showMoreBtn.addEventListener("click", () => {
   if (visibleCount < sortedReviews.length) {
     visibleCount = Math.min(visibleCount + pageSize, sortedReviews.length);
     pagination(visibleCount);
-    remainingReviews = totalReviewsCount - visibleCount
+    remainingReviews = totalReviewsCount - visibleCount;
 
     // console.log({
     //   VcountAfterClick: visibleCount,
@@ -73,8 +73,39 @@ showMoreBtn.addEventListener("click", () => {
   }
 });
 
-function cardHTML() {
-  return visibleReviews
+// Render rating bar helper function
+function renderRating(rating) {
+  let ratingMarkup = ``;
+  const totalStars = 5;
+  let fullStars = Number(Math.floor(rating));
+  const decimalPart = Number((rating % 1).toFixed(1));
+  let halfStars = 0;
+
+  // render full stars markup
+  for (let i = 0; i < fullStars; i++) {
+    ratingMarkup += `<i class="ri-star-fill text-yellow-400 text-xl"></i>`;
+  }
+
+  // render half stars markup
+  if (decimalPart >= 0.1 && decimalPart <= 0.5) {
+    ratingMarkup += `<i class="ri-star-half-fill text-yellow-400 text-xl"></i>`;
+    halfStars = 1;
+  } else if (decimalPart >= 0.6 && decimalPart <= 0.9) {
+    ratingMarkup += `<i class="ri-star-fill text-yellow-400 text-xl"></i>`;
+    fullStars += 1;
+  }
+
+  const emptyStars = totalStars - fullStars - halfStars;
+  // render empty stars markup
+  for (let i = 0; i < emptyStars; i++) {
+    ratingMarkup += `<i class="ri-star-fill text-gray-200 text-xl"></i>`;
+  }
+
+  return ratingMarkup;
+}
+
+function cardHTML(arrOfReviews) {
+  return arrOfReviews
     .map((review) => {
       // Obj reviews variables
       const username = users.find(
@@ -95,19 +126,6 @@ function cardHTML() {
         return newDate;
       }
 
-      // Render rating bar helper function
-      function renderRatings(rating) {
-        let ratingBar = ``;
-        for (let i = 0; i < 5; i++) {
-          if (i < rating) {
-            ratingBar += `<i class="ri-star-fill text-yellow-400 text-xl"></i>`;
-          } else {
-            ratingBar += `<i class="ri-star-fill text-gray-200 text-xl"></i>`;
-          }
-        }
-        return ratingBar;
-      }
-
       // Rendered Markup
       return `<div class="card-container flex flex-col gap-4">
             <div class="flex gap-4">
@@ -118,7 +136,7 @@ function cardHTML() {
                 <div class="flex flex-col justify-between">
                   <p class="font-semibold text-neutral-900">${username}</p>
                   <span class="rating-bar">
-                    ${renderRatings(review.rating)}
+                    ${renderRating(review.rating)}
                   </span>
                 </div>
                 <div class="date-n-time">
@@ -134,4 +152,50 @@ function cardHTML() {
     .join("");
 }
 
-cardsContainer.innerHTML = cardHTML();
+cardsContainer.innerHTML = cardHTML(visibleReviews);
+
+// RATING SUMMARY
+
+// Overall rating
+const overallRating = document.getElementById("overallRating");
+const averageRatingContainer = document.getElementById("averageRating");
+
+const totalRatings = reviews.reduce(
+  (accumulator, review) => accumulator + review.rating,
+  0,
+);
+const averageRating = totalRatings / reviews.length;
+const roundedAverage = averageRating.toFixed(1);
+console.log({
+  averageRating: averageRating,
+  roundedAverage: roundedAverage,
+});
+
+overallRating.innerHTML = renderRating(averageRating);
+averageRatingContainer.innerText = roundedAverage;
+// overallRating.addEventListener("click", (e) => {
+//   const clickedStar = e.target.closest(".star");
+//   console.log(clickedStar);
+//   if (!clickedStar) {
+//     console.log("You did not click a star");
+//     return;
+//   }
+
+//   const stars = Array.from(overallRating.children);
+//   const index = stars.indexOf(clickedStar) + 1;
+//   console.log(`You clicked star ${index}`);
+
+//   // Filter Reviews base on rating
+//   let filteredReviews = reviews.filter(review => {
+//     return review.rating == index;
+//   });
+//   visibleReviews = filteredReviews;
+//   cardsContainer.innerHTML = cardHTML(visibleReviews)
+//   console.log({
+//     filteredReviews: filteredReviews,
+//     visibleReviews: filteredReviews
+//   })
+// });
+
+// Rendering total number of reviews
+document.getElementById("total-no-reviews").innerText = totalReviewsCount;
