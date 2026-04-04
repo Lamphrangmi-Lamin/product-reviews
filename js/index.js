@@ -166,10 +166,10 @@ const totalRatings = reviews.reduce(
 );
 const averageRating = totalRatings / reviews.length;
 const roundedAverage = averageRating.toFixed(1);
-console.log({
-  averageRating: averageRating,
-  roundedAverage: roundedAverage,
-});
+// console.log({
+//   averageRating: averageRating,
+//   roundedAverage: roundedAverage,
+// });
 
 overallRating.innerHTML = renderRating(averageRating);
 averageRatingContainer.innerText = roundedAverage;
@@ -199,3 +199,48 @@ averageRatingContainer.innerText = roundedAverage;
 
 // Rendering total number of reviews
 document.getElementById("total-no-reviews").innerText = totalReviewsCount;
+
+// Review Bands
+
+const reviewBands = document.querySelectorAll('.review-band');
+// console.log(reviewBands.forEach((band, index) => {
+//   console.log({
+//     band: band,
+//     index: index,
+//     classList: band.classList
+//   });
+//   // band.classList
+// }))
+
+function renderPercent(numberOfStars) {
+  let newFilteredReviews = sortedReviews.filter(review => review.rating == numberOfStars);
+  // console.log(newFilteredReviews);
+  let percentage = (newFilteredReviews.length / sortedReviews.length) * 100;
+  let roundedPercent = percentage.toFixed();
+  return roundedPercent + '%';
+}
+
+const fiveStarsPercent = document.getElementById('fiveStarsPercent');
+const fiveStarsBand = document.getElementById('fiveStarsBand');
+fiveStarsPercent.innerText = renderPercent(5);
+fiveStarsBand.classList.add(`w-[${renderPercent(5)}]`);
+
+const fourStarsPercent = document.getElementById('fourStarsPercent');
+const fourStarsBand = document.getElementById('fourStarsBand');
+fourStarsPercent.innerText = renderPercent(4);
+fourStarsBand.classList.add(`w-[${renderPercent(4)}]`);
+
+const threeStarsPercent = document.getElementById('threeStarsPercent');
+const threeStarsBand = document.getElementById('threeStarsBand');
+threeStarsPercent.innerText = renderPercent(3);
+threeStarsBand.classList.add(`w-[${renderPercent(3)}]`)
+
+const twoStarsBand = document.getElementById('twoStarsBand');
+const twoStarsPercent = document.getElementById('twoStarsPercent');
+twoStarsPercent.innerText = renderPercent(2);
+twoStarsBand.classList.add(`w-[${renderPercent(2)}]`)
+
+const oneStarsBand = document.getElementById('oneStarsBand');
+const oneStarsPercent = document.getElementById('oneStarsPercent');
+oneStarsPercent.innerText = renderPercent(1);
+oneStarsBand.classList.add(`w-[${renderPercent(1)}]`)
