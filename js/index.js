@@ -1,10 +1,7 @@
 import reviews from "../data/product-reviews.json" with { type: "json" };
-// console.log(reviews);
 import users from "../data/users.json" with { type: "json" };
-// console.log(users);
 const cardsContainer = document.querySelector(".cards-container");
 const remainReviewsContainer = document.getElementById("remaining-reviews");
-// console.log(remainReviewsContainer);
 const showMoreBtn = document.getElementById("show-more-btn");
 
 // State
@@ -14,37 +11,32 @@ let sortedReviews = [...reviews].sort(
 
 // Pagination
 let visibleReviews = [];
-// console.log(remainingReviews)
 
 const mql = window.matchMedia("(width <= 768px)");
-// console.log(mql);
 
 let visibleCount = mql.matches ? 10 : 12;
 let remainingReviews;
-let totalReviewsCount = sortedReviews.length;
+// let totalReviewsCount = sortedReviews.length;
 let pageSize = mql.matches ? 10 : 12;
-
-// console.log({
-//   currentRemaining: remainingReviews,
-//   calC: `${sortedReviews.length} - ${visibleReviews.length}`,
-//   total: totalReviewsCount,
-// })
 
 mql.addEventListener("change", (event) => {
   if (event.matches) {
-    // console.log(`matches to true`);
     visibleCount = 10;
     pageSize = 10;
   } else {
-    // console.log(`matches to false`);
     visibleCount = 12;
     pageSize = 12;
   }
   pagination(visibleCount);
-  // console.log(visibleReviews);
+});
+
+let activeRatingFilter = null;
+let filteredReviews = getFilteredReviews();
+console.log({
+  filteredReviews: filteredReviews
 });
 function pagination(count) {
-  visibleReviews = sortedReviews.slice(0, count);
+  visibleReviews = filteredReviews.slice(0, count);
   cardsContainer.innerHTML = cardHTML(visibleReviews);
   remainReviewsContainer.innerText = `${pageSize}`;
 }
@@ -52,26 +44,27 @@ pagination(visibleCount);
 
 // Show more button
 showMoreBtn.addEventListener("click", () => {
-  if (visibleCount < sortedReviews.length) {
-    visibleCount = Math.min(visibleCount + pageSize, sortedReviews.length);
+  if (visibleCount < filteredReviews.length) {
+    visibleCount = Math.min(visibleCount + pageSize, filteredReviews.length);
     pagination(visibleCount);
-    remainingReviews = totalReviewsCount - visibleCount;
-
-    // console.log({
-    //   VcountAfterClick: visibleCount,
-    //   RcountAfterClick: remainingReviews
-    // });
+    remainingReviews = filteredReviews.length - visibleCount;
 
     if (remainingReviews <= 0) {
       remainReviewsContainer.innerText = `${remainingReviews}`;
     }
-    // console.log({
-    //   visibleReviews: visibleReviews,
-    //   visibleReviewsCount: visibleReviews.length,
-    //   remainingReviews: remainingReviews
-    // })
   }
 });
+
+// Date formatting helper function
+function formatDate(dateInput) {
+  const date = new Date(dateInput + "T00:00:00");
+  const newDate = date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  return newDate;
+}
 
 // Render rating bar helper function
 function renderRating(rating) {
@@ -104,6 +97,7 @@ function renderRating(rating) {
   return ratingMarkup;
 }
 
+// Rendering Card Reviews markup
 function cardHTML(arrOfReviews) {
   return arrOfReviews
     .map((review) => {
@@ -114,17 +108,6 @@ function cardHTML(arrOfReviews) {
       const avatarUrl = users.find(
         (user) => user.user_id === review.user_id,
       ).avatar_url;
-
-      // Date formatting helper function
-      function formatDate(dateInput) {
-        const date = new Date(dateInput + "T00:00:00");
-        const newDate = date.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        });
-        return newDate;
-      }
 
       // Rendered Markup
       return `<div class="card-container flex flex-col gap-4">
@@ -154,8 +137,8 @@ function cardHTML(arrOfReviews) {
 
 cardsContainer.innerHTML = cardHTML(visibleReviews);
 
-// RATING SUMMARY
 
+// RATING SUMMARY
 // Overall rating
 const overallRating = document.getElementById("overallRating");
 const averageRatingContainer = document.getElementById("averageRating");
@@ -166,81 +149,73 @@ const totalRatings = reviews.reduce(
 );
 const averageRating = totalRatings / reviews.length;
 const roundedAverage = averageRating.toFixed(1);
-// console.log({
-//   averageRating: averageRating,
-//   roundedAverage: roundedAverage,
-// });
 
 overallRating.innerHTML = renderRating(averageRating);
 averageRatingContainer.innerText = roundedAverage;
-// overallRating.addEventListener("click", (e) => {
-//   const clickedStar = e.target.closest(".star");
-//   console.log(clickedStar);
-//   if (!clickedStar) {
-//     console.log("You did not click a star");
-//     return;
-//   }
-
-//   const stars = Array.from(overallRating.children);
-//   const index = stars.indexOf(clickedStar) + 1;
-//   console.log(`You clicked star ${index}`);
-
-//   // Filter Reviews base on rating
-//   let filteredReviews = reviews.filter(review => {
-//     return review.rating == index;
-//   });
-//   visibleReviews = filteredReviews;
-//   cardsContainer.innerHTML = cardHTML(visibleReviews)
-//   console.log({
-//     filteredReviews: filteredReviews,
-//     visibleReviews: filteredReviews
-//   })
-// });
 
 // Rendering total number of reviews
-document.getElementById("total-no-reviews").innerText = totalReviewsCount;
+document.getElementById("total-no-reviews").innerText = sortedReviews.length;
 
 // Review Bands
-
-const reviewBands = document.querySelectorAll('.review-band');
-// console.log(reviewBands.forEach((band, index) => {
-//   console.log({
-//     band: band,
-//     index: index,
-//     classList: band.classList
-//   });
-//   // band.classList
-// }))
-
 function renderPercent(numberOfStars) {
-  let newFilteredReviews = sortedReviews.filter(review => review.rating == numberOfStars);
+  let newFilteredReviews = sortedReviews.filter(
+    (review) => review.rating == numberOfStars,
+  );
   // console.log(newFilteredReviews);
   let percentage = (newFilteredReviews.length / sortedReviews.length) * 100;
   let roundedPercent = percentage.toFixed();
-  return roundedPercent + '%';
+  return roundedPercent + "%";
 }
 
-const fiveStarsPercent = document.getElementById('fiveStarsPercent');
-const fiveStarsBand = document.getElementById('fiveStarsBand');
+const fiveStarsPercent = document.getElementById("fiveStarsPercent");
+const fiveStarsBand = document.getElementById("fiveStarsBand");
 fiveStarsPercent.innerText = renderPercent(5);
 fiveStarsBand.classList.add(`w-[${renderPercent(5)}]`);
 
-const fourStarsPercent = document.getElementById('fourStarsPercent');
-const fourStarsBand = document.getElementById('fourStarsBand');
+const fourStarsPercent = document.getElementById("fourStarsPercent");
+const fourStarsBand = document.getElementById("fourStarsBand");
 fourStarsPercent.innerText = renderPercent(4);
 fourStarsBand.classList.add(`w-[${renderPercent(4)}]`);
 
-const threeStarsPercent = document.getElementById('threeStarsPercent');
-const threeStarsBand = document.getElementById('threeStarsBand');
+const threeStarsPercent = document.getElementById("threeStarsPercent");
+const threeStarsBand = document.getElementById("threeStarsBand");
 threeStarsPercent.innerText = renderPercent(3);
-threeStarsBand.classList.add(`w-[${renderPercent(3)}]`)
+threeStarsBand.classList.add(`w-[${renderPercent(3)}]`);
 
-const twoStarsBand = document.getElementById('twoStarsBand');
-const twoStarsPercent = document.getElementById('twoStarsPercent');
+const twoStarsBand = document.getElementById("twoStarsBand");
+const twoStarsPercent = document.getElementById("twoStarsPercent");
 twoStarsPercent.innerText = renderPercent(2);
-twoStarsBand.classList.add(`w-[${renderPercent(2)}]`)
+twoStarsBand.classList.add(`w-[${renderPercent(2)}]`);
 
-const oneStarsBand = document.getElementById('oneStarsBand');
-const oneStarsPercent = document.getElementById('oneStarsPercent');
+const oneStarsBand = document.getElementById("oneStarsBand");
+const oneStarsPercent = document.getElementById("oneStarsPercent");
 oneStarsPercent.innerText = renderPercent(1);
-oneStarsBand.classList.add(`w-[${renderPercent(1)}]`)
+oneStarsBand.classList.add(`w-[${renderPercent(1)}]`);
+
+const reviewBands = document.querySelectorAll(".review-band");
+
+function getFilteredReviews() {
+  if (activeRatingFilter === null) return sortedReviews;
+  return sortedReviews.filter((review) => review.rating === activeRatingFilter);
+}
+
+// let filteredReviews = getFilteredReviews();
+// console.log({filteredReviews: filteredReviews})
+reviewBands.forEach((band) => {
+  band.addEventListener("click", () => {
+    activeRatingFilter = Number(band.dataset.rating);
+    filteredReviews = getFilteredReviews();
+    pagination(visibleCount);
+    console.log({
+      activeRatingFilter: activeRatingFilter,
+      filteredReviews: filteredReviews
+    })
+    // let filteredReviews = getFilteredReviews();
+    // cardHTML(filteredReviews);
+    // cardsContainer.innerHTML = cardHTML(filteredReviews)
+    // console.log({
+    //   activeRatingFilter: activeRatingFilter,
+    //   filteredReviews: filteredReviews
+    // });
+  });
+});
