@@ -15,44 +15,30 @@ let visibleReviews = [];
 const mql = window.matchMedia("(width <= 768px)");
 
 let visibleCount = mql.matches ? 10 : 12;
-let remainingReviews;
-// let totalReviewsCount = sortedReviews.length;
-let pageSize = mql.matches ? 10 : 12;
 
-mql.addEventListener("change", (event) => {
-  if (event.matches) {
-    visibleCount = 10;
-    pageSize = 10;
-  } else {
-    visibleCount = 12;
-    pageSize = 12;
-  }
-  pagination(visibleCount);
-});
+// initial value of pageSize as soon as the page/app loads
+let pageSize = mql.matches ? 10 : 12;
 
 let activeRatingFilter = null;
 let filteredReviews = getFilteredReviews();
-console.log({
-  filteredReviews: filteredReviews
+
+mql.addEventListener("change", (event) => {
+  pageSize = event.matches ? 10 : 12;
+  visibleCount = Math.min(filteredReviews.length, pageSize);
+  pagination(visibleCount);
 });
+
 function pagination(count) {
   visibleReviews = filteredReviews.slice(0, count);
   cardsContainer.innerHTML = cardHTML(visibleReviews);
-  remainReviewsContainer.innerText = `${pageSize}`;
+  remainReviewsContainer.innerText = `${filteredReviews.length - visibleReviews.length}`;
 }
 pagination(visibleCount);
 
 // Show more button
 showMoreBtn.addEventListener("click", () => {
-  if (visibleCount < filteredReviews.length) {
-    visibleCount = Math.min(visibleCount + pageSize, filteredReviews.length);
-    pagination(visibleCount);
-    remainingReviews = filteredReviews.length - visibleCount;
-
-    if (remainingReviews <= 0) {
-      remainReviewsContainer.innerText = `${remainingReviews}`;
-    }
-  }
+  visibleCount = Math.min(visibleCount + pageSize, filteredReviews.length);
+  pagination(visibleCount);
 });
 
 // Date formatting helper function
@@ -137,7 +123,6 @@ function cardHTML(arrOfReviews) {
 
 cardsContainer.innerHTML = cardHTML(visibleReviews);
 
-
 // RATING SUMMARY
 // Overall rating
 const overallRating = document.getElementById("overallRating");
@@ -161,7 +146,6 @@ function renderPercent(numberOfStars) {
   let newFilteredReviews = sortedReviews.filter(
     (review) => review.rating == numberOfStars,
   );
-  // console.log(newFilteredReviews);
   let percentage = (newFilteredReviews.length / sortedReviews.length) * 100;
   let roundedPercent = percentage.toFixed();
   return roundedPercent + "%";
@@ -199,23 +183,14 @@ function getFilteredReviews() {
   return sortedReviews.filter((review) => review.rating === activeRatingFilter);
 }
 
-// let filteredReviews = getFilteredReviews();
-// console.log({filteredReviews: filteredReviews})
 reviewBands.forEach((band) => {
   band.addEventListener("click", () => {
     activeRatingFilter = Number(band.dataset.rating);
     filteredReviews = getFilteredReviews();
+
+    // if filtered array is less than pageSize, set visibleCount to a value equal to that array length
+    visibleCount =
+      filteredReviews.length < pageSize ? filteredReviews.length : pageSize;
     pagination(visibleCount);
-    console.log({
-      activeRatingFilter: activeRatingFilter,
-      filteredReviews: filteredReviews
-    })
-    // let filteredReviews = getFilteredReviews();
-    // cardHTML(filteredReviews);
-    // cardsContainer.innerHTML = cardHTML(filteredReviews)
-    // console.log({
-    //   activeRatingFilter: activeRatingFilter,
-    //   filteredReviews: filteredReviews
-    // });
   });
 });
