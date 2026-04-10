@@ -179,9 +179,6 @@ oneStarsBand.classList.add(`w-[${renderPercent(1)}]`);
 const ratingBands = document.querySelectorAll(".ratingBandContainer");
 const clearFilterBtn = document.getElementById("clearFilterBtn");
 const ratingBandLabels = document.querySelectorAll(".rating-band-label");
-// console.log({
-//   ratingBandLabels: ratingBandLabels
-// })
 
 function getFilteredReviews() {
   if (activeRatingFilter === null) return sortedReviews;
@@ -200,7 +197,6 @@ ratingBands.forEach((band) => {
 
     // active state logic
     ratingBandLabels.forEach(label => {
-      // console.log(ratingBandLabels)
       label.classList.remove('text-indigo-700');
       label.classList.add('text-neutral-600');
       label.classList.add('hover:text-neutral-900');
@@ -212,3 +208,10 @@ ratingBands.forEach((band) => {
     band.querySelector('.rating-band-label').classList.add('text-indigo-700');
   });
 });
+
+clearFilterBtn.addEventListener("click", () => {
+  clearFilterBtn.classList.add("hidden");
+  activeRatingFilter = null;
+  filteredReviews = getFilteredReviews();
+  pagination(pageSize);
+})
