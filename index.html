@@ -66,10 +66,10 @@ grid grid-cols-4 gap-x-4">
 
         <!-- Rating bands -->
         <div class="py-4 flex gap-4 flex-col">
-          <div class="flex items-center justify-between gap-2">
-            <p class="w-[120px] font-medium text-neutral-600">Excellent</p>
+          <div data-rating="5" class="ratingBandContainer flex items-center justify-between gap-2 cursor-pointer">
+            <p class="rating-band-label w-[120px] font-medium text-neutral-600 hover:text-neutral-900">Excellent</p>
             <div class="flex items-center justify-between gap-2">
-              <div data-rating="5" class="review-band w-[117px] bg-gray-200 rounded-lg h-2
+              <div class="rating-band w-[117px] bg-gray-200 rounded-lg h-2
               md:w-[280px]">
                 <div id="fiveStarsBand" class="bg-green-600 h-2 p-0.5 leading-none rounded-lg"></div>
               </div>
@@ -77,10 +77,10 @@ grid grid-cols-4 gap-x-4">
             </div>
           </div>
 
-          <div class="flex items-center justify-between gap-2">
-            <p class="w-[120px] font-medium text-neutral-600">Good</p>
+          <div data-rating="4" class="ratingBandContainer flex items-center justify-between gap-2 cursor-pointer">
+            <p class=" rating-band-label w-[120px] font-medium text-neutral-600 hover:text-neutral-900">Good</p>
             <div class="flex items-center justify-between gap-2">
-              <div data-rating="4" class="review-band w-[117px] bg-gray-200 rounded-lg h-2
+              <div class="rating-band w-[117px] bg-gray-200 rounded-lg h-2
               md:w-[280px]">
                 <div id="fourStarsBand" class="bg-green-500 h-2 p-0.5 leading-none rounded-lg"></div>
               </div>
@@ -88,10 +88,10 @@ grid grid-cols-4 gap-x-4">
             </div>
           </div>
 
-          <div class="flex items-center justify-between gap-2">
-            <p class="w-[120px] font-medium text-neutral-600">Average</p>
+          <div data-rating="3" class="ratingBandContainer flex items-center justify-between gap-2 cursor-pointer">
+            <p class=" rating-band-label w-[120px] font-medium text-neutral-600 hover:text-neutral-900">Average</p>
             <div class="flex items-center justify-between gap-2">
-              <div data-rating="3" class="review-band w-[117px] bg-gray-200 rounded-lg h-2 flex
+              <div class="rating-band w-[117px] bg-gray-200 rounded-lg h-2 flex
               md:w-[280px]">
                 <div id="threeStarsBand" class="bg-yellow-300 h-2 p-0.5 leading-none rounded-lg w-[19%]"></div>
               </div>
@@ -99,10 +99,10 @@ grid grid-cols-4 gap-x-4">
             </div>
           </div>
           
-          <div class="flex items-center justify-between gap-2">
-            <p class="w-[120px] font-medium text-neutral-600">Below Average</p>
+          <div data-rating="2" class="ratingBandContainer flex items-center justify-between gap-2 cursor-pointer">
+            <p class="rating-band-label w-[120px] font-medium text-neutral-600 hover:text-neutral-900">Below Average</p>
             <div class="flex items-center justify-between gap-2">
-              <div data-rating="2" class="review-band w-[117px] bg-gray-200 rounded-lg h-2
+              <div class="rating-band w-[117px] bg-gray-200 rounded-lg h-2
               md:w-[280px]">
                 <div id="twoStarsBand" class="bg-yellow-500 h-2 p-0.5 leading-none rounded-lg w-[6%]"></div>
               </div>
@@ -110,10 +110,10 @@ grid grid-cols-4 gap-x-4">
             </div>
           </div>
 
-          <div class="flex items-center justify-between gap-2">
-            <p class="w-[120px] font-medium text-neutral-600">Poor</p>
+          <div data-rating="1" class="ratingBandContainer flex items-center justify-between gap-2 cursor-pointer">
+            <p class="rating-band-label w-[120px] font-medium text-neutral-600 hover:text-neutral-900">Poor</p>
             <div class="flex items-center justify-between gap-2">
-              <div data-rating="1" class="review-band w-[117px] bg-gray-200 rounded-lg h-2
+              <div class="rating-band w-[117px] bg-gray-200 rounded-lg h-2
               md:w-[280px]">
                 <div id="oneStarsBand" class="bg-red-500 h-2 p-0.5 leading-none rounded-lg w-[0%]"></div>
               </div>
@@ -122,7 +122,8 @@ grid grid-cols-4 gap-x-4">
           </div>
         </div>
 
-        <div class="text-neutral-900 font-medium flex justify-center">
+        <div class="text-neutral-900 font-medium flex justify-center gap-6">
+          <button id="clearFilterBtn" class="text-indigo-700 font-medium rounded py-3 px-5 hidden">Clear filter</button>
           <button class="border-[0.5px] border-neutral-200 shadow-md rounded py-3 px-5">Write a review</button>
         </div>
 

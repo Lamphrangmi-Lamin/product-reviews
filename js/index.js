@@ -176,21 +176,39 @@ const oneStarsPercent = document.getElementById("oneStarsPercent");
 oneStarsPercent.innerText = renderPercent(1);
 oneStarsBand.classList.add(`w-[${renderPercent(1)}]`);
 
-const reviewBands = document.querySelectorAll(".review-band");
+const ratingBands = document.querySelectorAll(".ratingBandContainer");
+const clearFilterBtn = document.getElementById("clearFilterBtn");
+const ratingBandLabels = document.querySelectorAll(".rating-band-label");
+// console.log({
+//   ratingBandLabels: ratingBandLabels
+// })
 
 function getFilteredReviews() {
   if (activeRatingFilter === null) return sortedReviews;
   return sortedReviews.filter((review) => review.rating === activeRatingFilter);
 }
 
-reviewBands.forEach((band) => {
+ratingBands.forEach((band) => {
   band.addEventListener("click", () => {
+    clearFilterBtn.classList.remove("hidden");
     activeRatingFilter = Number(band.dataset.rating);
     filteredReviews = getFilteredReviews();
-
     // if filtered array is less than pageSize, set visibleCount to a value equal to that array length
     visibleCount =
       filteredReviews.length < pageSize ? filteredReviews.length : pageSize;
     pagination(visibleCount);
+
+    // active state logic
+    ratingBandLabels.forEach(label => {
+      // console.log(ratingBandLabels)
+      label.classList.remove('text-indigo-700');
+      label.classList.add('text-neutral-600');
+      label.classList.add('hover:text-neutral-900');
+    })
+
+    band.querySelector('.rating-band-label').classList.remove('text-neutral-600');
+    band.querySelector('.rating-band-label').classList.remove('hover:text-neutral-900');
+    band.querySelector('.rating-band-label').classList.remove('text-neutral-600');
+    band.querySelector('.rating-band-label').classList.add('text-indigo-700');
   });
 });
