@@ -95,11 +95,21 @@ function cardHTML(arrOfReviews) {
         (user) => user.user_id === review.user_id,
       ).avatar_url;
 
+      // set avatar markup to a variable
+      let avatarMarkup = '';
+
+      // if avatarUrl exists set avatarMarkup to an image markup otherwise set it to the initials circle markup
+      if (avatarUrl) {
+        avatarMarkup = `<img class="w-12 h-12 object-cover rounded-full" src="${avatarUrl}" alt="avatar">`;
+      } else {
+        avatarMarkup = `<div class="bg-gray-200 text-xl font-medium text-neutral-600 w-12 h-12 rounded-full flex justify-center items-center">${getInitials(username)}</div>`;
+      }
+
       // Rendered Markup
       return `<div class="card-container flex flex-col gap-4">
             <div class="flex gap-4">
               <div class="w-12 h-12">
-                <img class="w-12 h-12 object-cover rounded-full" src="${avatarUrl}" alt="avatar">
+                ${avatarMarkup}
               </div>
               <div class="review-message-container flex flex-grow justify-between">
                 <div class="flex flex-col justify-between">
@@ -215,3 +225,15 @@ clearFilterBtn.addEventListener("click", () => {
   filteredReviews = getFilteredReviews();
   pagination(pageSize);
 })
+
+// Helper function to get the initials of a username of upto 2 characters long
+function getInitials(name = 'brenton mosley') {
+  return name.trim()
+        .split(' ')
+        .map(word => word[0])
+        .slice(0,2)
+        .join("")
+        .toUpperCase();
+}
+
+console.log(getInitials())
