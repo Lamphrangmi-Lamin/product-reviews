@@ -91,13 +91,18 @@ function cardHTML(arrOfReviews) {
       const username = users.find(
         (user) => user.user_id === review.user_id,
       ).name;
+
+      let reviewContent = "";
+      if (review.content) {
+        reviewContent = review.content;
+      }
+
       const avatarUrl = users.find(
         (user) => user.user_id === review.user_id,
       ).avatar_url;
 
       // set avatar markup to a variable
       let avatarMarkup = '';
-
       // if avatarUrl exists set avatarMarkup to an image markup otherwise set it to the initials circle markup
       if (avatarUrl) {
         avatarMarkup = `<img class="w-12 h-12 object-cover rounded-full" src="${avatarUrl}" alt="avatar">`;
@@ -124,7 +129,7 @@ function cardHTML(arrOfReviews) {
               </div>
             </div>
             <div class="text-neutral-600">
-              <p>${review.content}</p>
+              <p>${reviewContent}</p>
             </div>
           </div>`;
     })
@@ -235,5 +240,3 @@ function getInitials(name = 'brenton mosley') {
         .join("")
         .toUpperCase();
 }
-
-console.log(getInitials())
