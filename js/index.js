@@ -108,6 +108,7 @@ ratingBands.forEach((band) => {
 });
 
 clearFilterBtn.addEventListener("click", () => {
+  showMoreBtn.classList.remove("hidden");
   clearFilterBtn.classList.add("hidden");
   activeRatingFilter = null;
   activeReviews = getFilteredReviews();
