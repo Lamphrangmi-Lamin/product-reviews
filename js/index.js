@@ -85,24 +85,30 @@ showMoreBtn.addEventListener("click", () => {
 
 ratingBands.forEach((band) => {
   band.addEventListener("click", () => {
+    // showMoreBtn.classList.remove("hidden");
     clearFilterBtn.classList.remove("hidden");
     activeRatingFilter = Number(band.dataset.rating);
     activeReviews = getFilteredReviews();
     visibleCount = resetVisibleCount();
     renderReviewsPage(visibleCount);
 
-
     // active state logic
-    ratingBandLabels.forEach(label => {
-      label.classList.remove('text-indigo-700');
-      label.classList.add('text-neutral-600');
-      label.classList.add('hover:text-neutral-900');
-    })
+    ratingBandLabels.forEach((label) => {
+      label.classList.remove("text-indigo-700");
+      label.classList.add("text-neutral-600");
+      label.classList.add("hover:text-neutral-900");
+    });
 
-    band.querySelector('.rating-band-label').classList.remove('text-neutral-600');
-    band.querySelector('.rating-band-label').classList.remove('hover:text-neutral-900');
-    band.querySelector('.rating-band-label').classList.remove('text-neutral-600');
-    band.querySelector('.rating-band-label').classList.add('text-indigo-700');
+    band
+      .querySelector(".rating-band-label")
+      .classList.remove("text-neutral-600");
+    band
+      .querySelector(".rating-band-label")
+      .classList.remove("hover:text-neutral-900");
+    band
+      .querySelector(".rating-band-label")
+      .classList.remove("text-neutral-600");
+    band.querySelector(".rating-band-label").classList.add("text-indigo-700");
   });
 });
 
@@ -112,7 +118,7 @@ clearFilterBtn.addEventListener("click", () => {
   activeReviews = getFilteredReviews();
   visibleCount = resetVisibleCount();
   renderReviewsPage(visibleCount);
-})
+});
 
 // Rendering Card Reviews markup
 function renderReviewCards(arrOfReviews) {
@@ -133,7 +139,7 @@ function renderReviewCards(arrOfReviews) {
       ).avatar_url;
 
       // set avatar markup to a variable
-      let avatarMarkup = '';
+      let avatarMarkup = "";
       // if avatarUrl exists set avatarMarkup to an image markup otherwise set it to the initials circle markup
       if (avatarUrl) {
         avatarMarkup = `<img class="w-12 h-12 object-cover rounded-full" src="${avatarUrl}" alt="avatar">`;
@@ -211,6 +217,12 @@ function renderPercent(numberOfStars) {
 function renderReviewsPage(count) {
   visibleReviews = activeReviews.slice(0, count);
   cardsContainer.innerHTML = renderReviewCards(visibleReviews);
+  // const remainingNumOfReviews = activeReviews.length - visibleReviews.length;
+  // if (remainingNumOfReviews === 0) {
+  //   remainingReviewsCount.innerText = `${remainingNumOfReviews}`;
+  //   console.log(remainingNumOfReviews);
+  //   showMoreBtn.classList.add("hidden");
+  // }
   remainingReviewsCount.innerText = `${activeReviews.length - visibleReviews.length}`;
 }
 
@@ -236,11 +248,12 @@ function resetVisibleCount() {
 }
 
 // Helper function to get the initials of a username of upto 2 characters long
-function getInitials(name = 'brenton mosley') {
-  return name.trim()
-        .split(' ')
-        .map(word => word[0])
-        .slice(0,2)
-        .join("")
-        .toUpperCase();
+function getInitials(name = "brenton mosley") {
+  return name
+    .trim()
+    .split(" ")
+    .map((word) => word[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
 }
