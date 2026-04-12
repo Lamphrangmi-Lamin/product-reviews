@@ -85,7 +85,7 @@ showMoreBtn.addEventListener("click", () => {
 
 ratingBands.forEach((band) => {
   band.addEventListener("click", () => {
-    // showMoreBtn.classList.remove("hidden");
+    showMoreBtn.classList.remove("hidden");
     clearFilterBtn.classList.remove("hidden");
     activeRatingFilter = Number(band.dataset.rating);
     activeReviews = getFilteredReviews();
@@ -217,12 +217,10 @@ function renderPercent(numberOfStars) {
 function renderReviewsPage(count) {
   visibleReviews = activeReviews.slice(0, count);
   cardsContainer.innerHTML = renderReviewCards(visibleReviews);
-  // const remainingNumOfReviews = activeReviews.length - visibleReviews.length;
-  // if (remainingNumOfReviews === 0) {
-  //   remainingReviewsCount.innerText = `${remainingNumOfReviews}`;
-  //   console.log(remainingNumOfReviews);
-  //   showMoreBtn.classList.add("hidden");
-  // }
+  if (activeReviews.length - visibleReviews.length === 0) {
+    remainingReviewsCount.innerText = `${activeReviews.length - visibleReviews.length}`;
+    showMoreBtn.classList.add("hidden");
+  }
   remainingReviewsCount.innerText = `${activeReviews.length - visibleReviews.length}`;
 }
 
