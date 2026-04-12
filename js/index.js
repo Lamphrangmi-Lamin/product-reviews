@@ -15,28 +15,23 @@ const averageRatingContainer = document.getElementById("averageRating");
 
 const fiveStarsPercent = document.getElementById("fiveStarsPercent");
 const fiveStarsBand = document.getElementById("fiveStarsBand");
-fiveStarsPercent.innerText = renderPercent(5);
-fiveStarsBand.classList.add(`w-[${renderPercent(5)}]`);
+renderRatingBand(fiveStarsBand, fiveStarsPercent, 5);
 
 const fourStarsPercent = document.getElementById("fourStarsPercent");
 const fourStarsBand = document.getElementById("fourStarsBand");
-fourStarsPercent.innerText = renderPercent(4);
-fourStarsBand.classList.add(`w-[${renderPercent(4)}]`);
+renderRatingBand(fourStarsBand, fourStarsPercent, 4);
 
 const threeStarsPercent = document.getElementById("threeStarsPercent");
 const threeStarsBand = document.getElementById("threeStarsBand");
-threeStarsPercent.innerText = renderPercent(3);
-threeStarsBand.classList.add(`w-[${renderPercent(3)}]`);
+renderRatingBand(threeStarsBand, threeStarsPercent, 3);
 
 const twoStarsBand = document.getElementById("twoStarsBand");
 const twoStarsPercent = document.getElementById("twoStarsPercent");
-twoStarsPercent.innerText = renderPercent(2);
-twoStarsBand.classList.add(`w-[${renderPercent(2)}]`);
+renderRatingBand(twoStarsBand, twoStarsPercent, 2);
 
 const oneStarsBand = document.getElementById("oneStarsBand");
 const oneStarsPercent = document.getElementById("oneStarsPercent");
-oneStarsPercent.innerText = renderPercent(1);
-oneStarsBand.classList.add(`w-[${renderPercent(1)}]`);
+renderRatingBand(oneStarsBand, oneStarsPercent, 1);
 
 const ratingBands = document.querySelectorAll(".ratingBandContainer");
 const clearFilterBtn = document.getElementById("clearFilterBtn");
@@ -205,13 +200,30 @@ function renderRating(rating) {
 }
 
 // Review Bands
-function renderPercent(numberOfStars) {
-  let newFilteredReviews = sortedReviews.filter(
-    (review) => review.rating == numberOfStars,
+function getPercent(numberOfStars) {
+  const filteredReviewsForBand = sortedReviews.filter(
+    (review) => review.rating === numberOfStars,
   );
-  let percentage = (newFilteredReviews.length / sortedReviews.length) * 100;
-  let roundedPercent = percentage.toFixed();
-  return roundedPercent + "%";
+  return Math.round((filteredReviewsForBand.length / sortedReviews.length) * 100);
+}
+
+function renderPercent(numberOfStars) {
+  return `${getPercent(numberOfStars)}%`;
+}
+
+function renderRatingBand(bandElement, percentElement, numberOfStars) {
+  const percent = getPercent(numberOfStars);
+
+  percentElement.innerText = `${percent}%`;
+  bandElement.style.width = `${percent}%`;
+
+  // A 0% band should disappear completely so only the gray track remains.
+  if (percent === 0) {
+    bandElement.classList.add("hidden");
+    return;
+  }
+
+  bandElement.classList.remove("hidden");
 }
 
 function renderReviewsPage(count) {
